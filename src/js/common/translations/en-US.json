@@ -1,0 +1,7 @@
+{
+  "greetings.hello": "Hello, {name}, this is a message from translations!",
+
+  "employees.header": "Corporate Employees",
+
+  "employees.add": "Add Employee"
+}
