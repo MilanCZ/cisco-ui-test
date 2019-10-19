@@ -1,0 +1,19 @@
+.buttonPanel {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0 20px 0;
+}
+
+.pieChartContainer {
+    width: 45%;
+}
+
+.barChartContainer {
+    width: 45%;
+}
+
+.charts {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}

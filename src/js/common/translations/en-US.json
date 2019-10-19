@@ -3,5 +3,20 @@
 
   "employees.header": "Corporate Employees",
 
-  "employees.add": "Add Employee"
+  "employees.add": "Add Employee",
+
+  "employees.name": "Name",
+
+  "employees.jobTitle": "Job Title",
+
+  "employees.tenure": "Tenure",
+
+  "employees.gender": "Gender",
+
+  "submit": "Submit",
+
+  "back": "Back",
+
+  "employees.byJobTitle": "Employees by Job Title",
+  "employees.byGender": "Employees by Gender"
 }

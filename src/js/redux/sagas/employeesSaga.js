@@ -1,44 +1,51 @@
-import { put, fork, takeLatest } from 'redux-saga/effects'
+import { put, fork, takeLatest, call } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
+import superagent from 'superagent'
+
 import {
   constants as employeesConstants,
   actions as employeesActions,
 } from '../modules/employees'
-import _mockData from './new_hire.json'
 
-import type { employeesType } from '../../common/types/employees'
-
-const mockData = _mockData.map((employee) => ({
-  ...employee,
-  tenure: Number(employee.tenure),
-}))
-
-function getMockData(commands) {
-  if (commands && commands.sort && commands.sort.field) {
-    return [...mockData].sort((a, b) => {
-      if (a[commands.sort.field] > b[commands.sort.field]) {
-        return commands.sort.ascending ? 1 : -1
-      } else if (a[commands.sort.field] === b[commands.sort.field]) {
-        return 0
-      }
-      return commands.sort.ascending ? -1 : 1
-    })
+const apiCallToFetchEmployees = (payload) => {
+  const baseRequest = superagent.get(__CONFIG__.backend + 'employeeList')
+  if (payload && payload.sort && payload.sort.field) {
+    return baseRequest
+      .query({
+        _sort: payload.sort.field,
+        _order: payload.sort.ascending ? 'asc' : 'desc',
+      })
   }
-  return mockData
+  return baseRequest
 }
 
+const addId = (employee) => ({
+  ...employee,
+  id: Math.round(Math.random() * 1000000),
+})
+
+const apiCallToAddEmployee = (payload) => {
+  return superagent.post(__CONFIG__.backend + 'employeeList')
+    .set('Content-Type', 'application/json')
+    .send(addId(payload))
+}
 
 export function* fetchEmployeesData({ payload }) {
-  // pretend there is an api call
-  const result: employeesType = {
-    employeeList: getMockData(payload),
-    ...payload,
-  }
+  const response = yield call(apiCallToFetchEmployees, payload)
+  yield put(employeesActions.retrievedEmployees({ employeeList: response.body }))
+}
 
-  yield put(employeesActions.retrievedEmployees(result))
+export function* addEmployeeData({ payload }) {
+  yield call(apiCallToAddEmployee, payload)
+  yield put(push('/'))
 }
 
 function* watchGetEmployees() {
   yield takeLatest(employeesConstants.GET_EMPLOYEES, fetchEmployeesData)
 }
 
-export const employeesSaga = [fork(watchGetEmployees)]
+function* watchAddEmployees() {
+  yield takeLatest(employeesConstants.ADD_EMPLOYEE, addEmployeeData)
+}
+
+export const employeesSaga = [fork(watchAddEmployees), fork(watchGetEmployees)]

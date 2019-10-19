@@ -53,3 +53,7 @@
 .employeesTable tr:nth-child(odd) td {
   background-color: lightgray;
 }
+
+.loading {
+    height: 30px;
+}

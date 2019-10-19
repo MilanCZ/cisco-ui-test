@@ -1,4 +1,5 @@
 import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware } from 'react-router-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 
 import sagas from './sagas'
@@ -12,14 +13,13 @@ const reduxDevTool = () => {
     : (f) => f
 }
 
-// history is passed here, for this home, we don't use history
 export default function configureStore(initialState, history) { // eslint-disable-line no-unused-vars, max-len
   const sagaMiddleware = createSagaMiddleware()
-
-  const middleware = applyMiddleware(sagaMiddleware)
+  const _routerMiddleware = routerMiddleware(history)
 
   const composedStoreEnhancer = compose(
-    middleware,
+    applyMiddleware(sagaMiddleware),
+    applyMiddleware(_routerMiddleware),
     reduxDevTool()
   )
 

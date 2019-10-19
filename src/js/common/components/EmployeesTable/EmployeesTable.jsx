@@ -14,8 +14,8 @@ class EmployeesTable extends PureComponent {
     </tr>
   }
 
-  renderHeaderCell(field, label) { // TODO localize label ↑  ↓
-    const { data: { sort }, refreshFn } = this.props
+  renderHeaderCell(field, label) {
+    const { data: { sort } = {}, refreshFn } = this.props
 
     return <th>
       <a onClick={() => refreshFn({
@@ -28,12 +28,17 @@ class EmployeesTable extends PureComponent {
   }
 
   render() {
-    const { data: { employeeList } } = this.props
+    const {
+      data: { employeeList = [], loading = false } = {
+        employeeList: [],
+        loading: false,
+      },
+    } = this.props
 
     if (employeeList) {
       return (
         <div className={styles.employeesTable}>
-
+          <div className={styles.loading}>{loading ? 'Loading...' : null}</div>
           <table>
             <thead>
             <tr>

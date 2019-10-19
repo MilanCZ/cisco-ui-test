@@ -3,7 +3,9 @@
   "version": "1.3.4",
   "description": "React Redux Boilerplate is a workflow boilerplate that make life easier for developers by providing a virtual development environment and production ready build process framework out of the box.",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development DASHBOARD_PORT=9901 webpack-dashboard -p 9901 -c red -t dashboard -- node bin/commands.js dev",
+    "mock-server": "json-server __mocks__/new_hire.json",
+    "dev": "concurrently --kill-others \"npm run dev:webpack\" \"npm run mock-server\"",
+    "dev:webpack": "cross-env NODE_ENV=development DASHBOARD_PORT=9901 webpack-dashboard -p 9901 -c red -t dashboard -- node bin/commands.js dev",
     "build": "cross-env NODE_ENV=production node bin/commands.js build",
     "build:s3": "cross-env S3_DEPLOY=true NODE_ENV=production node bin/commands.js build",
     "build:stage": "cross-env NODE_ENV=stage node bin/commands.js build",
@@ -93,12 +95,14 @@
   "dependencies": {
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
+    "json-server": "^0.15.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-helmet": "^5.2.0",
     "react-intl": "^2.8.0",
     "react-loadable": "^5.5.0",
+    "react-minimal-pie-chart": "^5.0.2",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
@@ -106,7 +110,8 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
     "redux-saga": "^1.0.1",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "superagent": "^5.1.0"
   },
   "jest": {
     "testURL": "http://www.SomeAwesome.com",
