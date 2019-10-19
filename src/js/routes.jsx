@@ -11,8 +11,8 @@ module.exports = (
     <div className={styles.content}>
       <Switch>
         <Route exact path="/" component={Dashboard}/>
+        <Route path="/dashboard" component={Dashboard}/>
         <Route path="/addEmployee" component={AddEmployee}/>
-        <Route path="*" component={Dashboard}/>
       </Switch>
     </div>
   </div>

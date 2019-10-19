@@ -15,7 +15,7 @@
 
   "submit": "Submit",
 
-  "back": "Back",
+  "addemployee.back": "Back to the dashboard",
 
   "employees.byJobTitle": "Employees by Job Title",
   "employees.byGender": "Employees by Gender"

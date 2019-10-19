@@ -1,7 +1,18 @@
-## Build Status
-[![linux build](https://api.travis-ci.org/iroy2000/react-redux-boilerplate.svg?branch=master)](https://travis-ci.org/iroy2000/react-redux-boilerplate)
-[![Dependency Status][david_img]][david_site]
-[![Join the chat at https://gitter.im/iroy2000-react-redux-boilerplate/Lobby](https://badges.gitter.im/iroy2000-react-redux-boilerplate/Lobby.svg)](https://gitter.im/iroy2000-react-redux-boilerplate/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## Milan Stepanek's UI Hire Test
+
+This project is based off a react-redux project template (original readme below)
+
+To run it locally in dev mode use __npm run dev__ and a browser window should open. If not
+then access the dev server at __http://localhost:8080/__
+
+The route for direct access for the dashboard is __/__ or __/dashboard__ and for the adding of employee it is
+__/addEmployee__ 
+
+To run tests use __npm run test__
+
+___
+___
+___
 
 ### TL;DR
 

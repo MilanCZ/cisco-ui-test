@@ -155,7 +155,8 @@ class AddEmployeeView extends Component {
         </div>
         <button disabled={this.checkForErrors()} type="button"
                 onClick={this.handleSubmit}><FormattedMessage id="submit"/></button>
-        <button type="button" onClick={history.goBack}><FormattedMessage id="back"/></button>
+        <button type="button" onClick={() => history.push('/dashboard')}><FormattedMessage
+          id="addemployee.back"/></button>
 
       </Fragment>
     )
